@@ -13,6 +13,15 @@
 - `app/cli.py`：命令行入口
 - `tests/test_task_manager.py`：核心单元测试
 
+## OpenSpec（先定义需求与范围）
+
+在动手改代码前，请先阅读 `openspec/` 下文档：
+
+- `openspec/spec.md`：需求定义与验收标准
+- `openspec/change_scope.md`：本次变更范围（In/Out Scope）
+
+建议先评审 OpenSpec，再执行下述快速开始步骤。
+
 ## 快速开始
 
 ```bash
