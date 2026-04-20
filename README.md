@@ -40,3 +40,24 @@ python -m app.cli list
 3. 将存储从 JSON 替换为 SQLite
 4. 增加 GitHub Actions 测试流程
 
+## 封闭领域判定示例（核心网体验策略）
+
+新增模块将**训练**与**推理**完全分离，并按职责拆分为包结构：
+
+- `app/domain_detector/`：核心算法分模块（tokenizer/retrieval/vectorizer/models/trainer/inference/serialization）
+- `app/data_loader.py`：训练数据构建
+- `app/train_domain_detector.py`：离线训练并保存 `config.json + model.pt`
+- `app/infer_domain_detector.py`：加载产物并执行在线推理
+
+先离线训练：
+
+```bash
+python -m app.train_domain_detector --config-output .data/domain_detector/config.json --model-output .data/domain_detector/model.pt
+```
+
+再进行推理：
+
+```bash
+python -m app.infer_domain_detector "核心网体验策略如何结合PCF和UPF降低视频卡顿" --config .data/domain_detector/config.json --model .data/domain_detector/model.pt
+```
+
